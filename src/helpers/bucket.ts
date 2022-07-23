@@ -27,7 +27,7 @@ export class Bucket {
         })
         .promise();
 
-      return file;
+      return resp;
     } catch (error) {
       console.log(error);
       throw error;

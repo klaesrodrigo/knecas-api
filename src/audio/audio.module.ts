@@ -4,6 +4,9 @@ import { AudioController } from './audio.controller';
 import { MulterModule } from '@nestjs/platform-express';
 import { Bucket } from 'src/helpers/bucket';
 import * as multer from 'multer';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Audio, AudioSchema } from './audio.schema';
+import { AudioRepository } from './audio.repository';
 
 @Module({
   imports: [
@@ -19,8 +22,9 @@ import * as multer from 'multer';
         }),
       }),
     }),
+    MongooseModule.forFeature([{ name: Audio.name, schema: AudioSchema }]),
   ],
   controllers: [AudioController],
-  providers: [AudioService, Bucket],
+  providers: [AudioService, Bucket, AudioRepository],
 })
 export class AudioModule {}

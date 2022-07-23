@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { Bucket } from 'src/helpers/bucket';
+import { AudioRepository } from './audio.repository';
 import { CreateAudioDto } from './dto/create-audio.dto';
 import { UpdateAudioDto } from './dto/update-audio.dto';
 
 @Injectable()
 export class AudioService {
-  constructor(private readonly bucket: Bucket) {}
+  constructor(
+    private readonly bucket: Bucket,
+    private readonly audioRepository: AudioRepository,
+  ) {}
   create(createAudioDto: CreateAudioDto) {
     return 'This action adds a new audio';
   }
@@ -26,7 +30,13 @@ export class AudioService {
     return `This action removes a #${id} audio`;
   }
 
-  uploadFile(file: Express.Multer.File) {
-    return this.bucket.uploadFile(file);
+  async uploadFile(file: Express.Multer.File) {
+    const response = await this.bucket.uploadFile(file);
+    return this.audioRepository.create({
+      url: response.Location,
+      key: response.Key,
+      bucket: response.Bucket,
+      eTag: response.ETag,
+    });
   }
 }
