@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Bucket } from 'src/helpers/bucket';
+import { QRCodeService } from 'src/qrcode/qrcode.service';
 import { AudioRepository } from './audio.repository';
 import { CreateAudioDto } from './dto/create-audio.dto';
 import { UpdateAudioDto } from './dto/update-audio.dto';
@@ -9,6 +10,7 @@ export class AudioService {
   constructor(
     private readonly bucket: Bucket,
     private readonly audioRepository: AudioRepository,
+    private readonly qrCode: QRCodeService,
   ) {}
   create(createAudioDto: CreateAudioDto) {
     return 'This action adds a new audio';
@@ -32,6 +34,7 @@ export class AudioService {
 
   async uploadFile(file: Express.Multer.File) {
     const response = await this.bucket.uploadFile(file);
+    await this.qrCode.generate(response.Location);
     return this.audioRepository.create({
       url: response.Location,
       key: response.Key,

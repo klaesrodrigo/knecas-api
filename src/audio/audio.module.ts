@@ -7,6 +7,7 @@ import * as multer from 'multer';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Audio, AudioSchema } from './audio.schema';
 import { AudioRepository } from './audio.repository';
+import { QRCodeService } from 'src/qrcode/qrcode.service';
 
 @Module({
   imports: [
@@ -25,6 +26,6 @@ import { AudioRepository } from './audio.repository';
     MongooseModule.forFeature([{ name: Audio.name, schema: AudioSchema }]),
   ],
   controllers: [AudioController],
-  providers: [AudioService, Bucket, AudioRepository],
+  providers: [AudioService, Bucket, AudioRepository, QRCodeService],
 })
 export class AudioModule {}

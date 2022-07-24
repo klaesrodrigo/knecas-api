@@ -27,10 +27,12 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^9.2.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@types/qrcode": "^1.4.2",
     "aws-sdk": "^2.1176.0",
     "dotenv": "^16.0.1",
     "mongoose": "^6.4.6",
     "multer-s3": "^3.0.1",
+    "qrcode": "^1.5.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
