@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { S3 } from 'src/config/s3';
+import { S3 } from '../config/s3';
 import { randomUUID } from 'crypto';
 import * as path from 'path';
 import { readFile } from 'fs/promises';

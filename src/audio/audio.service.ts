@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Bucket } from 'src/helpers/bucket';
-import { QRCodeService } from 'src/qrcode/qrcode.service';
+import { Bucket } from '../helpers/bucket';
+import { QRCodeService } from '../qrcode/qrcode.service';
 import { AudioRepository } from './audio.repository';
 import { CreateAudioDto } from './dto/create-audio.dto';
 import { UpdateAudioDto } from './dto/update-audio.dto';

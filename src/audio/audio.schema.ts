@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type AudioDocument = Audio & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Audio {
   @Prop({ required: true })
   url: string;

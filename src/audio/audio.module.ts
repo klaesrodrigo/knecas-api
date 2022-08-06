@@ -2,12 +2,12 @@ import { Module } from '@nestjs/common';
 import { AudioService } from './audio.service';
 import { AudioController } from './audio.controller';
 import { MulterModule } from '@nestjs/platform-express';
-import { Bucket } from 'src/helpers/bucket';
+import { Bucket } from '../helpers/bucket';
 import * as multer from 'multer';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Audio, AudioSchema } from './audio.schema';
 import { AudioRepository } from './audio.repository';
-import { QRCodeService } from 'src/qrcode/qrcode.service';
+import { QRCodeService } from '../qrcode/qrcode.service';
 
 @Module({
   imports: [
