@@ -13,11 +13,9 @@ import { CreatedModel, RemovedModel, UpdatedModel } from './entity';
 export class Repository<T extends Document> {
   constructor(private readonly model: Model<T>) {}
 
-  async create(doc: object, saveOptions?: SaveOptions): Promise<CreatedModel> {
+  async create(doc: object, saveOptions?: SaveOptions): Promise<T> {
     const createdEntity = new this.model(doc);
-    const savedResult = await createdEntity.save(saveOptions);
-
-    return { id: savedResult.id, created: !!savedResult.id };
+    return await createdEntity.save(saveOptions);
   }
 
   async find(filter: FilterQuery<T>, options?: QueryOptions): Promise<T[]> {

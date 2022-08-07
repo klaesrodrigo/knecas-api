@@ -9,7 +9,8 @@ export class ProductService {
   constructor(private readonly productRepository: ProductRepository) {}
 
   async create(createProductDto: CreateProductDto) {
-    return this.productRepository.create(createProductDto);
+    const result = await this.productRepository.create(createProductDto);
+    return result;
   }
 
   findAll() {
